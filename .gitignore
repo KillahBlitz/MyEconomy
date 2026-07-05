@@ -1,0 +1,71 @@
+# ==========================================
+# 1. Archivos del Sistema Operativo (macOS)
+# ==========================================
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+Thumbs.db:encryptable
+*.lnk
+
+# ==========================================
+# 2. Backend (ASP.NET Core / C# / .NET)
+# ==========================================
+# Carpetas de compilación y salida
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Archivos de configuración del usuario / IDE
+.vs/
+.vscode/
+.idea/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+
+# Archivos generados por Rider / Visual Studio Mac
+*.userprefs
+.mono/
+
+# Archivos de publicación de .NET
+*.publish.xml
+publish/
+
+# Secretos locales (¡NUNCA los subas a Git!)
+appsettings.Development.json
+usersecrets.json
+
+# Herramientas de Entity Framework (archivos temporales de migración)
+*.sqlite-journal
+
+# ==========================================
+# 3. Frontend (Vue.js / Node.js)
+# ==========================================
+# Dependencias de Node
+node_modules/
+/dist/
+dist-ssr/
+*.local
+
+# Archivos de logs de npm/yarn
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Variables de entorno locales (con credenciales/IPs privadas)
+.env.local
+.env.*.local
+
+# Editor y herramientas de Vue
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+
+# ==========================================
+# 4. Docker / Contenedores
+# ==========================================
+# Ignorar los archivos de datos físicos de la DB si los guardas en local
+.docker/
