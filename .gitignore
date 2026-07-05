@@ -69,3 +69,4 @@ pnpm-debug.log*
 # ==========================================
 # Ignorar los archivos de datos físicos de la DB si los guardas en local
 .docker/
+.env

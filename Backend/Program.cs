@@ -1,9 +1,15 @@
+using DotNetEnv;
+using Microsoft.EntityFrameworkCore;
+using Backend.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+Env.Load();
+string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING") ?? throw new InvalidOperationException("Connection string not found.");
+
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 
@@ -20,7 +26,6 @@ if (app.Environment.IsDevelopment())
 //app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
