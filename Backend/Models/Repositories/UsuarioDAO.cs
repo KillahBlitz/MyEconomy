@@ -1,7 +1,5 @@
 using Backend.Data;
 using Backend.Models;
-
-
 namespace Backend.Models.Repositories
 {
     public class UsuarioDAO
