@@ -15,8 +15,8 @@ namespace Backend.Models.Repositories
         public CategoriaModel? CrearCategoria(string nombreCategoria)
         {
             var categoriaDB = new CategoriaModel{ tipo_categoria = nombreCategoria };
-            categoriaDB = _context.Categorias.FirstOrDefault(c => c.tipo_categoria == nombreCategoria);
-            if (categoriaDB != null)
+            var categoriaDBExist = _context.Categorias.FirstOrDefault(c => c.tipo_categoria == nombreCategoria);
+            if (categoriaDBExist != null)
             {
                 return null;
             }
