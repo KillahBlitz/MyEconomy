@@ -53,5 +53,19 @@ namespace WebAPI.Controllers
             return dashboard;
 
         }
-    } 
+
+        [HttpPost("Debs")]
+        public bool CreateDebs([FromBody] DeudaModel deuda)
+        {
+            var result = deudasDAO.CreateDeuda(deuda);
+            return result;
+        }
+
+        [HttpDelete("Debs/{id_deuda}")]
+        public bool DeleteDebs(int id_deuda)
+        {
+            var result = deudasDAO.DeleteDeudas(id_deuda);
+            return result;
+        } 
+    }
 }

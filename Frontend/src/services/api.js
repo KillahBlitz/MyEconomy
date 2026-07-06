@@ -69,3 +69,47 @@ export async function deleteSaldo(id) {
     });
     return response.json();
 }
+
+
+export async function getDashboardDebs(params) {
+    const cachedUserId = localStorage.getItem('userId');
+    const userId = cachedUserId ? parseInt(cachedUserId, 10) : 0;
+
+    const response = await fetch(`${baseUrl}GetDashboardDebs`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            userId: userId,
+            startDate: params.startDate,
+            endDate: params.endDate
+        }),
+    });
+    return response.json();
+}
+
+
+export async function createDeuda({ id_usuario, tipo_deuda, descripcion, cantidad, fcha_registro }) {
+    const response = await fetch(`${baseUrl}Debs`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id_usuario,
+            tipo_deuda,
+            descripcion,
+            cantidad,
+            fcha_registro
+        }),
+    });
+    return response.json();
+}
+
+export async function deleteDeuda(id) {
+    const response = await fetch(`${baseUrl}Debs/${id}`, {
+        method: 'DELETE',
+    });
+    return response.json();
+}

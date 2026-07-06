@@ -46,5 +46,24 @@ namespace Backend.Models.Repositories
                 error = string.Empty
             };
         }
+    
+        public bool CreateDeuda(DeudaModel deuda)
+        {
+            _context.Deudas.Add(deuda);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool DeleteDeudas(int id_deuda)
+        {
+            var deuda = _context.Deudas.FirstOrDefault(d => d.deuda_id == id_deuda);
+            if (deuda != null)
+            {
+                _context.Deudas.Remove(deuda);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
     }
 }
