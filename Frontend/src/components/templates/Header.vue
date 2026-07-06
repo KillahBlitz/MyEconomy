@@ -8,6 +8,7 @@ const router = useRouter();
 const goToContability = () => router.push({ name: 'principal-contability' });
 const goToDebts = () => router.push({ name: 'principal-debts' });
 const goToTickets = () => router.push({ name: 'principal-tickets' });
+const goToConfigurations = () => router.push({ name: 'principal-configurations' });
 </script>
 
 <template>
@@ -18,7 +19,7 @@ const goToTickets = () => router.push({ name: 'principal-tickets' });
                 <button class="header-button-1" @click="goToContability">Contabilidad</button>
                 <button class="header-button-1" @click="goToDebts">Deudas</button>
                 <button class="header-button-1" @click="goToTickets">Tickets</button>
-                <button class="header-button-2">Configuracion</button>
+                <button class="header-button-2" @click="goToConfigurations">Configuracion</button>
             </div>
             <button class="header-button-3" @click="emit('logout')">Cerrar Sesion</button>
         </div>

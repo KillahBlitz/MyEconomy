@@ -65,7 +65,7 @@ create table Productos(
 
 
 create table Deudas(
-    deuda_id integer not null,
+    deuda_id integer identity(1,1) primary key,
     id_usuario smallint not null,
     tipo_deuda bit not null,
     descripcion varchar(100) not null,
@@ -74,3 +74,40 @@ create table Deudas(
     constraint "fk_id_user_1" foreign key(id_usuario)
     references Usuarios(user_id)
 )
+
+-- Trigger: Al crear un ticket, genera un saldo asociado
+CREATE TRIGGER trg_Ticket_Insert
+ON Tickets
+AFTER INSERT
+AS
+BEGIN
+    INSERT INTO Saldos (concepto, cantidad, fcha_registro, id_usuario, id_categoria)
+    SELECT 
+        CONCAT('Ticket ', CAST(i.ticket_id AS VARCHAR(10))),
+        i.cuenta_total,
+        i.fcha_emision,
+        i.id_usuario,
+        2
+    FROM inserted i;
+END
+GO
+
+-- Trigger: Al borrar un ticket, elimina el saldo asociado
+CREATE TRIGGER trg_Ticket_Delete
+ON Tickets
+AFTER DELETE
+AS
+BEGIN
+    DELETE FROM Saldos
+    WHERE EXISTS (
+        SELECT 1 FROM deleted d
+        WHERE Saldos.concepto = CONCAT('Ticket ', CAST(d.ticket_id AS VARCHAR(10)))
+          AND Saldos.id_usuario = d.id_usuario
+    );
+END
+GO
+
+insert into Tickets values
+('2026-07-06', 8766.14, 1)
+DELETE FROM tickets where ticket_id = 3;
+select * from Tickets

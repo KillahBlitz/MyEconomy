@@ -25,3 +25,6 @@ select * from Deudas
 select * from Usuarios
 select * from Saldos
 select * from Categoria
+
+select * from Tickets
+select * from Productos

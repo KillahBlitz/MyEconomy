@@ -15,7 +15,7 @@ namespace Backend.Models
         public short id_usuario { get; set; }
 
         [Column("cuenta_total", TypeName = "decimal(8,2)")]
-        public decimal cuenta_total { get; set; }
+        public decimal cuenta_total { get; set; } = 0;
 
         [Column("fcha_emision")]
         public DateOnly fcha_emision { get; set; }

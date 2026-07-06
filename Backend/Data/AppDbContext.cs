@@ -16,5 +16,11 @@ namespace Backend.Data
         public DbSet<TicketModel> Tickets { get; set; }
         public DbSet<ProductoModel> Productos { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<TicketModel>().ToTable(tb => tb.HasTrigger("trg_Ticket_Insert"));
+            modelBuilder.Entity<TicketModel>().ToTable(tb => tb.HasTrigger("trg_Ticket_Delete"));
+        }
     }
 }

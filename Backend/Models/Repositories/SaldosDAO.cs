@@ -77,7 +77,7 @@ namespace Backend.Models.Repositories
                 _context.SaveChanges();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -96,7 +96,7 @@ namespace Backend.Models.Repositories
                 }
                 return false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

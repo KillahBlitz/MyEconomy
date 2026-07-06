@@ -113,3 +113,68 @@ export async function deleteDeuda(id) {
     });
     return response.json();
 }
+
+
+export async function createTicket(products) {
+    const cachedUserId = localStorage.getItem('userId');
+    const userId = cachedUserId ? parseInt(cachedUserId, 10) : 0;
+
+    const response = await fetch(`${baseUrl}ticket`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            user_id: userId,
+            products
+        }),
+    });
+    return response.json();
+}
+
+export async function deleteTicket(ticketId) {
+    const response = await fetch(`${baseUrl}ticket/${ticketId}`, {
+        method: 'DELETE',
+    });
+    return response.json();
+}
+
+export async function getTickets() {
+    const cachedUserId = localStorage.getItem('userId');
+    const userId = cachedUserId ? parseInt(cachedUserId, 10) : 0;
+
+    const response = await fetch(`${baseUrl}tickets/${userId}`, {
+        method: 'GET',
+    });
+    return response.json();
+}
+
+export async function getTicketDetail(ticketId) {
+    const response = await fetch(`${baseUrl}ticketDetail/${ticketId}`, {
+        method: 'GET',
+    });
+    return response.json();
+}
+
+
+export async function createCategory(categoria) {
+    const response = await fetch(`${baseUrl}Category`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ categoria }),
+    });
+    return response.json();
+}
+
+export async function deleteCategory(categoriaId) {
+    const response = await fetch(`${baseUrl}Category`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ categoriaId }),
+    });
+    return response.json();
+}

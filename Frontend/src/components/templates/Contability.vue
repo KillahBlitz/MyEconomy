@@ -244,6 +244,12 @@ const handleCreateIncome = async () => {
     }
 };
 
+const selectableCategories = computed(() => {
+    return Object.fromEntries(
+        Object.entries(categoriesDictionary.value).filter(([id]) => id !== "2")
+    );
+});
+
 const openExpenseModal = () => {
     expenseForm.value = { concepto: "", cantidad: 0, id_categoria: null };
     isExpenseCategoryOpen.value = false;
@@ -409,7 +415,7 @@ onMounted(() => {
                                 </div>
                                 <div class="modal-select-dropdown" v-show="isExpenseCategoryOpen">
                                     <div
-                                        v-for="(name, id) in categoriesDictionary"
+                                        v-for="(name, id) in selectableCategories"
                                         :key="id"
                                         class="modal-dropdown-item"
                                         :class="{ selected: expenseForm.id_categoria === parseInt(id) }"
@@ -417,7 +423,7 @@ onMounted(() => {
                                     >
                                         {{ name }}
                                     </div>
-                                    <div v-if="Object.keys(categoriesDictionary).length === 0" class="no-options">
+                                    <div v-if="Object.keys(selectableCategories).length === 0" class="no-options">
                                         Cargando...
                                     </div>
                                 </div>
@@ -528,7 +534,7 @@ onMounted(() => {
                                     <span class="record-category">{{ getCategoryName(gasto.id_categoria) }}</span>
                                 </div>
                                 <span class="record-amount expense">-{{ formatCurrency(gasto.cantidad) }}</span>
-                                <button class="delete-btn" type="button" @click="handleDeleteSaldo(gasto.saldo_id)">Eliminar</button>
+                                <button v-if="gasto.id_categoria !== 2" class="delete-btn" type="button" @click="handleDeleteSaldo(gasto.saldo_id)">Eliminar</button>
                             </li>
                         </ul>
                     </div>

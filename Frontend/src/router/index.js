@@ -4,6 +4,7 @@ import PrincipalPage from '../components/PrincipalPage.vue';
 import Contability from '../components/templates/Contability.vue';
 import Debts from '../components/templates/Debts.vue';
 import Tickets from '../components/templates/Tickets.vue';
+import Configurations from '../components/templates/Configurations.vue';
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
         path: 'tickets',
         name: 'principal-tickets',
         component: Tickets,
+      },
+      {
+        path: 'configurations',
+        name: 'principal-configurations',
+        component: Configurations,
       },
     ],
   },
