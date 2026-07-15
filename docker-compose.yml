@@ -1,0 +1,33 @@
+services:
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: myeconomy-backend
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT:-Development}
+      - DB_CONNECTION_STRING=${DB_CONNECTION_STRING}
+    # ports:
+    #   - "5050:5000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - myeconomy
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: myeconomy-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - myeconomy
+    restart: unless-stopped
+
+networks:
+  myeconomy:
+    driver: bridge

@@ -1,0 +1,25 @@
+name: Deploy MyEconomy
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  despliegue:
+    runs-on: self-hosted 
+
+    steps:
+      - name: 📥 Obtener último código del repositorio
+        uses: actions/checkout@v4
+
+      - name: 🚀 Desplegar con variables de entorno
+        run: |
+          # 1. Traemos tu archivo .env seguro hacia la carpeta de trabajo actual
+          cp ~/.env ./.env
+          
+          # 2. Apagamos los contenedores anteriores
+          docker-compose down
+          
+          # 3. Construimos y levantamos la nueva versión usando el código recién descargado
+          docker-compose up -d --build
