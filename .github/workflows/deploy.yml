@@ -21,3 +21,4 @@ jobs:
           
           # 2. Construimos y levantamos la nueva versión usando el código recién descargado
           docker-compose up -d --build
+
