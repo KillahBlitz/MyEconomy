@@ -15,9 +15,11 @@ jobs:
 
       - name: 🚀 Desplegar con variables de entorno
         run: |
+          # 1. Traemos tu archivo .env seguro hacia la carpeta de trabajo actual
+          cp ~/.env.myeconomy ./.env
           
-          # 1. Apagamos los contenedores anteriores
+          # 2. Apagamos los contenedores anteriores
           docker-compose down
           
-          # 2. Construimos y levantamos la nueva versión usando el código recién descargado
+          # 3. Construimos y levantamos la nueva versión usando el código recién descargado
           docker-compose up -d --build
