@@ -19,7 +19,7 @@ jobs:
           cp ~/.env.myeconomy ./.env
           
           # 2. Apagamos los contenedores anteriores
-          docker-compose down
+          docker compose down
           
           # 3. Construimos y levantamos la nueva versión usando el código recién descargado
-          docker-compose up -d --build
+          docker compose up -d --build
